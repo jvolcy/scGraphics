@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: scgraphics
+Version: 2.1
+Summary: UNKNOWN
+Home-page: http://ezgraphics.org
+Author: Rance Necaise
+Author-email: necaiser@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
