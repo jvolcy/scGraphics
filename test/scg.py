@@ -1,5 +1,27 @@
 ## @package scgraphics.py
 #
+#scGraphics is a modification of the ezGraphics library by
+#Rance Necaise (http://ezgraphics.org).  Every attempt is
+#made to keep scGraphics backward compatible with
+#ezGraphics 2.1, from which it is derived.  The main
+#differences between sc and ez are:
+#1)  addition of a canvas update function, update().  
+#update() can be used instead of wait() so that
+#the graphics on the canvas can be animated.  Use 
+#update() inside of a loop that repeatedly clears() and
+#redraws the canvas.
+#2) addition of a non-blocking key reading function,
+#scanKey().  Unlike getKey(), scanKey() returns the keysym
+#for the last key pressed.  Instead of blocking and waiting
+#for user input, scanKey() returns an empty string if no
+#key has been pressed.
+#3) by default, 'keypress' events are enabled.  This is
+#required by scanKey().
+#
+#Spelman College, 2018
+#jvolcy@spelman.edu
+#
+
 # This module is part of the Python Graphics and GUI Toolkit which is an
 # ongoing open source project designed to provide simple Python GUI tools 
 # for use in the classroom. This module provides classes for creating 
