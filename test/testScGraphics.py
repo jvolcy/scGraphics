@@ -1,6 +1,9 @@
 from scg import GraphicsWindow
 import sys
 
+from scg import demo
+demo()
+
 
 # Create the window and access the canvas. 
 win = GraphicsWindow(400, 200)
