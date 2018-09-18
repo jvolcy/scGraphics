@@ -1535,7 +1535,8 @@ SpaceFlight().run()
             elif key == 'space':     #warp
                 shipY = openingY
                 fuel -= 10.0
-                
+            
+            self.win.pause(30)      #slow down the update loop    
             self.win.update()
         
         #print a 'Game Over' message and quit
