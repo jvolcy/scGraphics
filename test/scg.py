@@ -65,6 +65,9 @@ except ImportError :
     import Tkinter as tk
     import Tkinter.tkSimpleDialog as tkdlg
 
+#scGraphics
+SCVERSION = "2.1-003"     #@@SCVERSION  ---Do Not Delete This Comment---
+
 ## This class defines a basic top level window that can be opened on the 
 #  desktop and used to produce simple graphical drawings. It contains a
 #  canvas on which geometric shapes can be drawn and manipulated. It also 
@@ -1386,19 +1389,23 @@ SpaceFlight().run()
         self.canvas = self.win.canvas()
     
     def printInstructions(self):
-        instructions = '''Use the up and down arrows to move the spacecraft up and down.
-    The object of the game is to navigate through each gate until your
-    fuel runs out or until you have no crafts left.  On startup, your fuel
-    is at 100% and you have 4 reserved crafts.  You can control the
-    speed of your craft using the left and right arrows.  Your score
-    increments with each gate you successfully cross.  The points 
-    you accumulate is dependent on the speed at which you cross
-    each gate.  Use the predictor at the upper-right to see the location
-    of the next gate ahead.  You may use the spacebar to 'warp' through
-    any gate.  Doing so will cost you 10% of your fuel.
-    Good luck, Space Ranger!'''
+        instructions = '-------------------------------------------------------\n' \
+        + 'scGraphics Version ' + SCVERSION + \
+'''\n-------------------------------------------------------
+How to Play
+-----------
+Use the up and down arrows to move the spacecraft up and down.
+The object of the game is to navigate through each gate until your
+fuel runs out or until you have no crafts left.  On startup, your fuel
+is at 100% and you have 4 reserved crafts.  You can control the
+speed of your craft using the left and right arrows.  Your score
+increments with each gate you successfully cross.  The points 
+you accumulate is dependent on the speed at which you cross
+each gate.  Use the predictor at the upper-right to see the location
+of the next gate ahead.  You may use the spacebar to 'warp' through
+any gate.  Doing so will cost you 10% of your fuel.
+Good luck, Space Ranger!'''
         
-        print('How to Play\n-----------')
         print(instructions)
         print()
         
@@ -1457,7 +1464,7 @@ SpaceFlight().run()
         self.drawWall(x=self.CANVAS_WIDTH - 50, y=0, width=5, height=self.HEADER_HEIGHT, openingY=openingY, openingHeight=openingHeight)
     
     #main game loop
-    def run(self):
+    def run(self, period_ms):
         shipX = self.GAME_WND_WIDTH//4
         shipY = self.CENTERY
         wallX = 0.0 #float(GAME_WND_WIDTH)
@@ -1536,7 +1543,7 @@ SpaceFlight().run()
                 shipY = openingY
                 fuel -= 10.0
             
-            self.win.pause(30)      #slow down the update loop    
+            self.win.pause(period_ms)      #slow down the update loop    
             self.win.update()
         
         #print a 'Game Over' message and quit
@@ -1547,6 +1554,6 @@ SpaceFlight().run()
 
 #scGraphics
 #function to launch scGraphics "SpaceFlight" demo program
-def demo():
-    SpaceFlight().run()
+def demo(period_ms = 30):
+    SpaceFlight().run(period_ms)
 

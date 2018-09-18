@@ -1,0 +1,85 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 LucidaConsole;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red153\green102\blue51;\red128\green0\blue128;
+\red127\green127\blue127;\red63\green105\blue30;}
+{\*\expandedcolortbl;;\cssrgb\c1680\c19835\c100000;\cssrgb\c66800\c47512\c25860;\cssrgb\c57919\c12801\c57269;
+\cssrgb\c57046\c57047\c57046;\cssrgb\c30831\c47797\c15540;}
+\margl1440\margr1440\vieww16620\viewh14000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Introduction\
+============\
+scGraphics is a modification of the ezGraphics library by\
+Rance Necaise (http://ezgraphics.org).  Every attempt is\
+made to keep scGraphics backward compatible with\
+ezGraphics 2.1, from which it is derived.\
+\
+This document outlines the steps for upgrading and installing\
+the scGraphics library.\
+\
+\
+\
+Directory Structure\
+===================
+\f1 \
+.\
+\uc0\u9500 \u9472 \u9472  \cf2 scGraphics readme.txt\cf0  		[the file you are reading]\
+\uc0\u9500 \u9472 \u9472  \cf2 scgraphics.py\cf0  				[the single scGraphics python module]\
+\uc0\u9500 \u9472 \u9472  \cf3 distribution\cf0  				[the directory used for making the scGraphics distribution]\
+\uc0\u9474 \'a0\'a0 \u9500 \u9472 \u9472  \cf2 build.command\cf0  			[the command script for building the sc package and installer]\
+\uc0\u9474 \'a0\'a0 \u9500 \u9472 \u9472  \cf3 distros\cf0  				[directory containing completed distributions]\
+\uc0\u9474 \'a0\'a0 \u9474 \'a0\'a0 \u9500 \u9472 \u9472  \cf4 2.1-003 \cf0 			[an example distribution directory (not to be distributed)]\
+\uc0\u9474 \'a0\'a0 \u9474 \'a0\'a0 \u9474 \'a0\'a0 \u9500 \u9472 \u9472  \cf5 Install (Mac).command\cf0 \
+\uc0\u9474 \'a0\'a0 \u9474 \'a0\'a0 \u9474 \'a0\'a0 \u9500 \u9472 \u9472  \cf5 Install (Win).bat\cf0 \
+\uc0\u9474 \'a0\'a0 \u9474 \'a0\'a0 \u9474 \'a0\'a0 \u9492 \u9472 \u9472  \cf5 scgraphics-2.1.tar.gz\cf0 \
+\uc0\u9474 \'a0\'a0 \u9474 \'a0\'a0 \u9492 \u9472 \u9472  \cf4 2.1-003.tar.gz		\cf0 [an example distribution file (to be distributed)]\
+\uc0\u9474 \'a0\'a0 \u9500 \u9472 \u9472  \cf3 install_scripts\cf0  			[directory containing Mac and Win install scripts (included with the distro)]\
+\uc0\u9474 \'a0\'a0 \u9474 \'a0\'a0 \u9500 \u9472 \u9472  \cf2 Install\\ (Mac).command\cf0 	[Mac install script]\
+\uc0\u9474 \'a0\'a0 \u9474 \'a0\'a0 \u9492 \u9472 \u9472  \cf2 Install\\ (Win).bat\cf0  	[Win install script]\
+\uc0\u9474 \'a0\'a0 \u9492 \u9472 \u9472  \cf3 package\cf0  				[the directory used to make the scgraphics-2.1.tar.gz package]\
+\uc0\u9474 \'a0\'a0     \u9500 \u9472 \u9472  \cf6 MANIFEST\cf0 \
+\uc0\u9474 \'a0\'a0     \u9500 \u9472 \u9472  \cf6 PKG-INFO\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \uc0\u9474 \'a0\'a0     \u9500 \u9472 \u9472  \cf6 setup.py\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \uc0\u9474 \'a0\'a0     \u9500 \u9472 \u9472  \cf3 dist\cf0  				[the directory that contains the built scgraphics-2.1.tar.gz package]\
+\uc0\u9474 \'a0\'a0     \u9474 \'a0\'a0 \u9492 \u9472 \u9472  \cf6 scgraphics-2.1.tar.gz\cf0 \
+\uc0\u9474 \'a0\'a0     \u9492 \u9472 \u9472  \cf3 scgraphics\cf0 \
+\uc0\u9474 \'a0\'a0      \'a0\'a0 \u9492 \u9472 \u9472  \cf6 __init__.py\cf0  -> ../../../scgraphics.py\
+\uc0\u9492 \u9472 \u9472  \cf3 test\cf0  						[directory used for testing sc module]\
+    \uc0\u9500 \u9472 \u9472  \cf2 scg.py\cf0  				[hard link to ../scgraphics.py (the sc module)]\
+    \uc0\u9492 \u9472 \u9472  \cf2 testScGraphics.py\cf0  		[python program to test the sc module]\
+\
+
+\f0 \
+\
+\
+Terminology\
+==========\
+The "package" refers to the installable python package containing the library file scgraphics-2.1.tar.gz.  This file is created in the package directory using the procedures outlined at {\field{\*\fldinst{HYPERLINK "https://packaging.python.org/tutorials/packaging-projects/"}}{\fldrslt https://packaging.python.org/tutorials/packaging-projects/}}\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf0 \
+The "installers" refer to the platform-specific installation scripts that facilitate installing the package on a Windows of Mac computer.  The install scripts are stored in the 'install_scripts' directory.\
+\
+The "distribution" contains the package and the installers.  This is what is distributed for use.  The distributions are versioned.  Each distributed version is stored in the 'distros' directory.\
+\
+\
+Code Modification and Testing\
+=======================\
+Modifications to the sc module are made by directly modifying the file scgraphics.py found in the top level directory above.  A test directory containing the files 'scg.py' and 'testScGraphics.py' are used to test changes to the sc module.  'scg.py' is hard-linked to scgraphics.py.  Modifying one, modifies the other.  The purpose of 'scg.py' is to permit the test prorgram 'testScGraphics.py' to import the local module instead of the one installed on the system.  In other words, "import scgraphics" imports the module on the system by that name, not the local module by the same name.  Conversely, "import scg" imports the local module through the link.\
+\
+\
+The Build Process\
+==============\
+Once the module is modified and test, it's time to build the package and distribution.  The package can be built manually by issuing the command \
+'python3 setup.py sdist'\
+from the package directory.  However, building the package and distribution is automated by the 'build.command' script found in the top-level directory.\
+The 'build.command' script first reads the sc version number from the module source.  Then, it builds the package as described above.  Finally, it packages the install scripts with the package to create a distribution .tar.gz file in the distros directory.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+Installation\
+=========\
+Installing the sc module on a Windows or Mac pc is accomplished by downloading and uncompressing the distribution.  Then, the appropriate installation script should be run.  On Mac computers, you may be prompted to enter an admin password.\
+\
+}
